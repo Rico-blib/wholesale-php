@@ -31,11 +31,13 @@ foreach ($_SESSION['cart'] as $item) {
     $total += $item['price'] * $item['quantity'];
 }
 
-// Insert into orders table
-$order_stmt = $conn->prepare("INSERT INTO orders (user_id, total_amount, payment_method, status, created_at) VALUES (?, ?, ?, 'Pending', NOW())");
-$order_stmt->bind_param("ids", $user_id, $total, $payment_method);
-$order_stmt->execute();
+// Generate secure unique order token
+$order_token = bin2hex(random_bytes(16)); // 32-char secure token
 
+// Insert into orders table with order_token
+$order_stmt = $conn->prepare("INSERT INTO orders (user_id, total_amount, payment_method, status, created_at, order_token) VALUES (?, ?, ?, 'Pending', NOW(), ?)");
+$order_stmt->bind_param("idss", $user_id, $total, $payment_method, $order_token);
+$order_stmt->execute();
 $order_id = $order_stmt->insert_id;
 
 // Insert each cart item into order_items
@@ -45,10 +47,18 @@ foreach ($_SESSION['cart'] as $item) {
     $item_stmt->execute();
 }
 
-// Clear cart
-unset($_SESSION['cart']);
+// For M-Pesa payment
+if ($payment_method === 'M-Pesa') {
+    // Send order amount to M-Pesa
+    $_SESSION['current_order_token'] = $order_token;
 
-// Flash message and redirect
+    // Now send the actual amount dynamically to M-Pesa (instead of a hardcoded value)
+    header("Location: ../mpesa/stkpush.php?token=$order_token&amount=$total");
+    exit();
+}
+
+// For other payment methods (Cash on Delivery or Bank Card)
+unset($_SESSION['cart']);
 $_SESSION['flash'] = "Order placed successfully!";
 header('Location: ../user/orders.php');
 exit();

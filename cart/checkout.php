@@ -67,8 +67,7 @@ foreach ($_SESSION['cart'] as $item) {
     <h2 class="text-center text-success fw-bold mb-4">Checkout</h2>
 
     <?php if (isset($_SESSION['flash'])): ?>
-      <div class="alert alert-success"><?= $_SESSION['flash'];
-                                        unset($_SESSION['flash']); ?></div>
+      <div class="alert alert-success"><?= $_SESSION['flash']; unset($_SESSION['flash']); ?></div>
     <?php endif; ?>
 
     <!-- 🟩 Address Update Form -->
@@ -160,36 +159,15 @@ foreach ($_SESSION['cart'] as $item) {
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    document.getElementById('editAddressBtn').addEventListener('click', function() {
-      const collapse = new bootstrap.Collapse(document.getElementById('addressFields'), {
-        toggle: true
-      });
+    document.getElementById('editAddressBtn').addEventListener('click', function () {
+      const collapse = new bootstrap.Collapse(document.getElementById('addressFields'), { toggle: true });
     });
 
-    document.getElementById('cancelAddressBtn').addEventListener('click', function() {
+    document.getElementById('cancelAddressBtn').addEventListener('click', function () {
       const collapse = bootstrap.Collapse.getInstance(document.getElementById('addressFields'));
       if (collapse) collapse.hide();
     });
   </script>
-  <script>
-    document.getElementById('confirmBtn').addEventListener('click', function(e) {
-      const paymentMethod = document.querySelector('input[name="payment_method"]:checked');
-      const form = document.getElementById('checkoutForm');
-
-      if (!paymentMethod) {
-        alert('Please select a payment method.');
-        e.preventDefault();
-        return;
-      }
-
-      if (paymentMethod.value === 'M-Pesa') {
-        form.action = '../mpesa/stkpush.php';
-      } else {
-        form.action = 'place_order.php';
-      }
-    });
-  </script>
-
 </body>
 
 </html>
