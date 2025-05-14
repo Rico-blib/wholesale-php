@@ -1,0 +1,22 @@
+{
+    "timestamp": "2025-05-02 12:32:33",
+    "raw_amount": "7000.00",
+    "final_amount": 7000,
+    "raw_phone": "0757117791",
+    "formatted_phone": "254757117791",
+    "order_token": "d11e4d3936a98131f7861668d98ced23"
+}{
+    "timestamp": "2025-05-02 12:46:38",
+    "raw_amount": "1.00",
+    "final_amount": 1,
+    "raw_phone": "0757117791",
+    "formatted_phone": "254757117791",
+    "order_token": "b995497b704b8453cfdb2a892fbeef0b"
+}{
+    "timestamp": "2025-05-06 06:28:23",
+    "raw_amount": "1.00",
+    "final_amount": 1,
+    "raw_phone": "0757117791",
+    "formatted_phone": "254757117791",
+    "order_token": "469d11018394397483d9a4d8cad4b707"
+}

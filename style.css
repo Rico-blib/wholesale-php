@@ -1,0 +1,88 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f8f9fa; /* Light background for clean look */
+    color: #212529;
+}
+
+/* NAVIGATION */
+.dropdown-hover:hover .dropdown-menu,
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* CATEGORY CARD */
+.category-card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* PRODUCT IMAGES */
+.product-img,
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* CARD TITLES */
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* FOOTER */
+footer {
+    font-size: 0.9rem;
+    background-color: #e9ecef;
+    padding: 20px 0;
+    margin-top: 50px;
+}
+
+/* CAROUSEL */
+.carousel-img {
+    height: 400px;
+    object-fit: cover;
+}
+.carousel-inner img {
+    border-radius: 8px;
+}
+.carousel-caption {
+    animation: fadeInUp 1s ease-in-out;
+    max-width: 600px;
+    position: absolute;
+    z-index: 2;
+}
+.carousel-image-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7));
+    z-index: 1;
+}
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* WISHLIST BUTTON */
+.wishlist-btn {
+    z-index: 5;
+    transition: background-color 0.3s;
+}
+.wishlist-btn:hover {
+    background-color: #e9ecef;
+}
+
+/* TOAST */
+.toast {
+    font-size: 0.95rem;
+}
